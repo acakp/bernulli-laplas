@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-// Factorial calculates the factorial of a number
+// Calculate the factorial of a number
 func factorial(n int) float64 {
 	if n <= 1 {
 		return 1
@@ -13,7 +13,7 @@ func factorial(n int) float64 {
 	return float64(n) * factorial(n-1)
 }
 
-// BernoulliFormula calculates the probability using the Bernoulli formula
+// Calculates the probability using the Bernoulli formula
 func bernoulliFormula(n int, events []int, probabilities []float64) float64 {
 	// Calculate the numerator (n!)
 	numerator := factorial(n)
@@ -24,18 +24,16 @@ func bernoulliFormula(n int, events []int, probabilities []float64) float64 {
 		denominator *= factorial(event)
 	}
 
-	// Calculate the product of probabilities raised to their respective powers
 	probabilityProduct := 1.0
 	for i, event := range events {
 		probabilityProduct *= math.Pow(probabilities[i], float64(event))
 	}
 
-	// Calculate the final result
 	result := (numerator / denominator) * probabilityProduct
 	return result
 }
 
-// MoivreLaplaceFormula calculates the probability using the Moivre-Laplace formula
+// Calculates the probability using the Moivre-Laplace formula
 func moivreLaplaceFormula(n int, k int, p float64) float64 {
 	q := 1.0 - p
 	x := (float64(k) - float64(n)*p) / math.Sqrt(float64(n)*p*q)
@@ -103,6 +101,7 @@ func main() {
 	fmt.Print(n)
 	fmt.Print("!/(")
 	for i, event := range events {
+		// 'if' to not display * in front of first number
 		if i > 0 {
 			fmt.Print("*")
 		}
